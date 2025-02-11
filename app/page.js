@@ -6,7 +6,7 @@ import Image from "next/image";
 import { ProcessSection } from "@/components/ProcessSection";
 import Methodology from "@/components/Methodology";
 import ContactSection from "@/components/ContactSection";
-import { BadgeIndianRupee, Gamepad2, Headset, MonitorDown, PackageSearch } from "lucide-react";
+import { BadgeIndianRupee, ChartColumnIncreasing, Eclipse, Gamepad2, HandCoins, Headset, LandPlot, LoaderPinwheel, MonitorDown, PackageSearch, SignpostBig, SignpostBigIcon, Volleyball } from "lucide-react";
 import logo from '../public/assets/image/logo.png';
 import techImg1 from '../public/assets/image/techno-1.png';
 import techImg2 from '../public/assets/image/techno-2.png';
@@ -63,13 +63,34 @@ export default function Home() {
       <div className="sports-section">
         <h1>Fantasy Sports We Develop</h1>
         <div class="sports-grid">
-          <div className="sport-box">Football</div>
-          <div className="sport-box">Cricket</div>
-          <div className="sport-box">Kabaddi</div>
-          <div className="sport-box">Basketball</div>
-          <div className="sport-box">Tennis</div>
-          <div className="sport-box">Hockey</div>
-          <div className="sport-box">Golf</div>
+          <div className="sport-box">
+            <p className="sport-icon"><Volleyball width={50} height={50} /></p>
+            <p>Football</p>
+          </div>
+          <div className="sport-box">
+            <p className="sport-icon"><ChartColumnIncreasing width={50} height={50} /></p>
+            <p>Cricket</p>
+          </div>
+          <div className="sport-box">
+            <p className="sport-icon"><SignpostBigIcon width={50} height={50} /></p>
+            <p>Kabaddi</p>
+          </div>
+          <div className="sport-box">
+            <p className="sport-icon"><LoaderPinwheel width={50} height={50} /></p>
+            <p>Basketball</p>
+          </div>
+          <div className="sport-box">
+            <p className="sport-icon"><Eclipse width={50} height={50} /></p>
+            <p>Tennis</p>
+          </div>
+          <div className="sport-box">
+            <p className="sport-icon"><HandCoins width={50} height={50} /></p>
+            <p>Hockey</p>
+          </div>
+          <div className="sport-box">
+            <p className="sport-icon"><LandPlot width={50} height={50} /></p>
+            <p>Golf</p>
+          </div>
         </div>
         <div className="flex justify-center items-center gap-4">
           <button className="cta-button">
