@@ -52,6 +52,10 @@ const Methodology = () => {
                 ))
             }
         </div>
+        <div class="hire-container">
+            <h1>Hire Fantasy Sports App<br/>Development Company</h1>
+            <button class="cta-button">TALK TO OUR EXPERT</button>
+        </div>
     </div>
   )
 }

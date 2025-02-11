@@ -418,6 +418,8 @@ header {
     /* padding: 1rem 0.5rem; */
     min-width: 45%;
     flex-grow: 0;
+    display: flex;
+    flex-direction: column;
   }
   .why-us {
     padding: 3rem 1rem;
@@ -443,6 +445,10 @@ header {
   width: 95%;
   margin: 0 auto;
   padding: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
 }
 
 .timeline-container h1 {
@@ -590,6 +596,58 @@ header {
   .timeline-marker {
       left: 0px;
       transform: translate(0, -50%);
+  }
+}
+
+
+.hire-container {
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  padding: 5rem;
+  color: white;
+  background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+  margin-top: 3rem;
+  border-radius: .4rem;
+}
+
+.hire-container h1 {
+  color: white;
+  font-size: 2.3rem;
+  font-weight: 700;
+  padding-bottom: 3rem;
+  line-height: 1.2;
+}
+
+.hire-container .cta-button {
+  background-color: #E0F2FE;
+  color: #0284C7;
+  border: none;
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hire-container .cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 480px) {
+  .hire-container .container {
+      padding: 20px 16px;
+  }
+  
+  .hire-container h1 {
+      margin-bottom: 30px;
+  }
+  
+  .hire-container .cta-button {
+      padding: 14px 28px;
+      font-size: 0.9rem;
   }
 }
 
