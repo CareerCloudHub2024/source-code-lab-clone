@@ -1,7 +1,40 @@
+'use client'
+
+import { generateEmailBody, sendEmail } from '@/lib/nodemailer';
 import { Instagram, Linkedin, MailOpenIcon, PhoneCallIcon, Twitter } from 'lucide-react'
-import React from 'react'
+import React, { useState } from 'react'
 
 const ContactSection = () => {
+    const [formData,setFormData] = useState(
+        {
+            name:"",
+            email:"",
+            phoneNo:"",
+            message:"",
+            budget:""
+        }
+    );
+
+    const changeHandler = (e)=>{
+        setFormData(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    const submitHandler = async(e)=>{
+        e.preventDefault();
+        // console.log(formData)
+
+        const emailContent = await generateEmailBody(formData);
+        await sendEmail(emailContent,formData?.email);
+        const response = await sendEmail(emailContent,formData?.email);
+        // if(response)
+        //     alert("Query Received Successfully");
+        // else
+        //     alert("Please fill from again");
+    };
+
   return (
     <div className="contact-container">
         <div className="grid">
@@ -10,11 +43,13 @@ const ContactSection = () => {
                 <h1>Have a Project in Mind?</h1>
                 <h2>Consult with Our Experts Today!</h2>
                 
-                <form>
+                <form onSubmit={submitHandler}>
                     <div className='flex gap-4 flex-col sm:flex-row justify-center items-center'>
                         <input
                             type="text"
                             placeholder="Full Name"
+                            name="name" 
+                            onChange={changeHandler}
                             required
                             className='w-full'
                         />
@@ -22,6 +57,8 @@ const ContactSection = () => {
                         <input
                             type="email"
                             placeholder="Email"
+                            name="email" 
+                            onChange={changeHandler}
                             required
                             className='w-full'
                         />
@@ -31,6 +68,8 @@ const ContactSection = () => {
                         <input
                             type="tel"
                             placeholder="Mobile Number"
+                            name="phoneNo" 
+                            onChange={changeHandler}
                             required
                             className='w-full'
                             />
@@ -38,14 +77,18 @@ const ContactSection = () => {
                         <input
                             type="number"
                             placeholder="Budget"
-                            className='w-full'
+                            name="budget" 
+                            onChange={changeHandler}
                             required
+                            className='w-full'
                         />
                     </div>
                     
                     <textarea
                         placeholder="About Project"
                         rows="4"
+                        name="message" 
+                        onChange={changeHandler}
                         required
                     ></textarea>
                     

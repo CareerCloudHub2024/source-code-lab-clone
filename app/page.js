@@ -12,8 +12,55 @@ import techImg1 from '../public/assets/image/techno-1.png';
 import techImg2 from '../public/assets/image/techno-2.png';
 import clientImg1 from '../public/assets/image/client-1.png';
 import clientImg2 from '../public/assets/image/client-2.png';
+import { useState } from "react";
+import { generateEmailBody, sendEmail } from "@/lib/nodemailer";
 
 export default function Home() {
+
+  const [loading,setLoading] = useState(false);
+  const [formData,setFormData] = useState(
+    {
+      name:"",
+      email:"",
+      phoneNo:"",
+      message:"",
+      budget:""
+    }
+  )
+  
+  const handleClick = () => {
+    const phoneNumber = "8700381153";
+    const message = "Thank You for contacting. Please drop your query.";
+
+    // Remove any non-numeric characters from the phone number
+    const cleanPhoneNumber = phoneNumber.replace(/\D/g, '');
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(message);
+    // Create WhatsApp URL
+    const whatsappUrl = `https://wa.me/${cleanPhoneNumber}?text=${encodedMessage}`;
+    // Open in new tab
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const changeHandler = (e)=>{
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
+  }
+
+  const submitHandler = async(e)=>{
+    e.preventDefault();
+    // console.log(formData)
+
+    const emailContent = await generateEmailBody(formData);
+    const response = await sendEmail(emailContent,formData?.email);
+    // if(response)
+    //   alert("Query Received Successfully");
+    // else
+    //   alert("Please fill from again");
+  };
+
   return (
     <section>
       <header>
@@ -28,18 +75,18 @@ export default function Home() {
         <div className="content">
             <h1>Fantasy Sports App Development Company</h1>
             <p>Get a high-performing app with a trusted fantasy sports app development company experienced in providing custom and on-demand app development solutions based on your specific needs.</p>
-            <button className="whatsapp-button">CONNECT ON WHATSAPP</button>
+            <button className="whatsapp-button" type="button" onClick={handleClick}>CONNECT ON WHATSAPP</button>
         </div>
         <div className="quote-form">
             
         <h2>Request a Quote Free</h2>
             <p>Leverage our deep technological expertise.</p>
             <p>Contact us for innovative solutions!</p>
-            <form>
-                <input type="text" placeholder="Name" required/>
-                <input type="email" placeholder="Email" required/>
-                <input type="tel" placeholder="Phone Number" required/>
-                <textarea placeholder="Message"></textarea>
+            <form onSubmit={submitHandler}>
+                <input type="text" placeholder="Name" name="name" required onChange={changeHandler}/>
+                <input type="email" placeholder="Email" name="email" required onChange={changeHandler}/>
+                <input type="tel" placeholder="Phone Number" name="phoneNo" required onChange={changeHandler}/>
+                <textarea placeholder="Message" name="message" onChange={changeHandler}></textarea>
                 <button type="submit">SEND</button>
             </form>
 
